@@ -9,14 +9,15 @@ import jakarta.ws.rs.core.Response;
 import java.io.File;
 import java.util.List;
 import java.util.Optional;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.security.RolesAllowed;
 
 @Path("/pokemon")
 public class PokemonDexController {
     @GET
     @Path("info/{id}")
+    @RolesAllowed({"User", "Admin"})
     @Produces(MediaType.APPLICATION_JSON) // Define o tipo de conteúdo da resposta como texto plano
     public Response getPokemonDex(@PathParam("id") int id) {
         try {
@@ -25,14 +26,13 @@ public class PokemonDexController {
             // Verifique se o arquivo existe
            
             if (pokemonFile.exists()) {
-                System.out.println("BANAAAAAAAAAAAAAAAAAAAAAA\n"); 
                 //Cria uma lista a partir do arquivo JSON
                 List<Pokemon> pokemonList = new ObjectMapper().readValue(pokemonFile, new TypeReference<List<Pokemon>>(){});
                 Optional<Pokemon> pokemon = pokemonList.stream()
                 .filter(p -> p.getId() == id)
                 .findFirst();
                 if (pokemon.isPresent()) {
-                    return Response.ok(pokemon.get()).build();
+                    return Response.ok(Response.Status.OK).entity(pokemon.get()).build();
                 } else {
                     return Response.status(Response.Status.NOT_FOUND).build();
                 }

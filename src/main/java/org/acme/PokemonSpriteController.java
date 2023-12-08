@@ -5,10 +5,13 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
 import java.io.File;
+import jakarta.annotation.security.RolesAllowed;
+
 
 @Path("/pokemon")
 public class PokemonSpriteController {
     @GET
+    @RolesAllowed({"User", "Admin"})
     @Path("sprite/{id}")
     @Produces("image/png") // Define o tipo de conteúdo da resposta como imagem png
     public Response getPokemonSprite(@PathParam("id") String id) {
