@@ -1,56 +1,40 @@
-# hello-world
+# Quarkus API Dex
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This is a Quarkus-based API Dex project that provides various endpoints for managing Pokémon data.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Endpoints
 
-## Running the application in dev mode
+### PokemonDexController.java
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+This controller handles requests related to the Pokémon Dex. It provides the following endpoints:
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+- `GET /pokemon/info/{id}`: Retrieves details of a specific Pokémon based on its ID.
 
-## Packaging and running the application
+### PokemonSpriteController.java
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+This controller handles requests related to Pokémon sprites. It provides the following endpoints:
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+- `GET /pokemon/sprite/{id}`: Retrieves the sprite image of a specific Pokémon based on its ID.
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+### PokemonMarlon.java
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+This controller handles requests related to Pokémon Images. It provides the following endpoints:
 
-## Creating a native executable
+- `GET /pokemon/image/{id}`: Retrieves the image of a specific Pokémon based on its ID.
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
+## Getting Started
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+To run this project locally, follow these steps:
 
-You can then execute your native executable with: `./target/hello-world-1.0.0-SNAPSHOT-runner`
+1. Clone the repository.
+2. Install the necessary dependencies.
+3. Build the project using the provided build script.
+4. Run the application using the provided run script.
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+## Contributing
 
-## Provided Code
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-### RESTEasy Reactive
+## License
 
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+This project is licensed under the [MIT License](LICENSE).
